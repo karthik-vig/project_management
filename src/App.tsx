@@ -15,16 +15,16 @@ function App() {
 
   const handleButtonAction = () => {
     setNotificationMsgs((state) => {
-        return [`hello ${count}`, ...state];
+        return [...state, `hello ${count}`];
     });
     setCount(count + 1);
-    // setTimeout(() => {
-    //     setNotificationMsgs((state) => {
-    //         const newState =  [...state];
-    //         newState.pop();
-    //         return newState;
-    //     });
-    // }, 5000);
+    setTimeout(() => {
+        setNotificationMsgs((state) => {
+            const newState =  [...state];
+            newState.unshift();
+            return newState;
+        });
+    }, 5000);
   }
 
   return (
