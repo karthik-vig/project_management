@@ -4,27 +4,19 @@ import {
     MantineProvider, 
     Button, 
 } from '@mantine/core';
-import MsgNotification from './components/resuableComponents/notifications/notifications';
+import AllNotifications from './components/resuableComponents/notifications/notifications';
 
 
 const theme = createTheme({});
 
 function App() {
-  const [notificationMsgs, setNotificationMsgs] = useState<string[]>([]);
+//   const [notificationMsgs, setNotificationMsgs] = useState<string[]>([]);
   const [count, setCount] = useState(0);
+  const [notificationMsg, setNotificationMsg] = useState<string>('');
 
   const handleButtonAction = () => {
-    setNotificationMsgs((state) => {
-        return [...state, `hello ${count}`];
-    });
+    setNotificationMsg(`hello ${count}`);
     setCount(count + 1);
-    setTimeout(() => {
-        setNotificationMsgs((state) => {
-            const newState =  [...state];
-            newState.unshift();
-            return newState;
-        });
-    }, 5000);
   }
 
   return (
@@ -38,11 +30,7 @@ function App() {
         >
             Increase count
         </Button>
-        {   
-            notificationMsgs.map((msg, idx) => {
-                return <MsgNotification msg={msg} idx={idx}/>
-            })
-        }
+        <AllNotifications msg={notificationMsg} />
     </MantineProvider>
   );
 }
